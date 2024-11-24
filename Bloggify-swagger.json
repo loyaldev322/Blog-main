@@ -1,0 +1,1732 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Bloggify",
+    "contact": {}
+  },
+  "host": "localhost:5000",
+  "basePath": "/api/user",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "summary": "User Signup",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "UserSignup",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserSignupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserSignup"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "Registration Success.",
+                "data": {
+                  "full_name": "John Doe",
+                  "username": "john01",
+                  "email": "john01@gmail.com",
+                  "password": "5f4dcc3b5aa765d61d8327deb882cf99",
+                  "_id": "6199039f2b88fabc684ab32f",
+                  "createdAt": "2021-11-20T14:18:07.781Z",
+                  "updatedAt": "2021-11-20T14:18:07.781Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "282"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"11a-Wh/gJYWdjg0GioF6JDQ5P4I5VGk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:18:07 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "User Login",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "UserLogin",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserLoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "Login Success.",
+                "data": {
+                  "username": "john01",
+                  "email": "john01@gmail.com",
+                  "full_name": "John Doe",
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4wMSIsImVtYWlsIjoiam9objAxQGdtYWlsLmNvbSIsInVzZXJfaWQiOiI2MTk5MDM5ZjJiODhmYWJjNjg0YWIzMmYiLCJpYXQiOjE2Mzc0MTc5MjIsImV4cCI6MTYzNzUwNDMyMn0.H3KYHoLictbjki4MauLIQsHxADIz8as7e6g8JVloNl0"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "369"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"171-C6f8w9cTRlyp6r+9S5KlVHWTOOs\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:18:42 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/new-blog": {
+      "post": {
+        "summary": "Add New Blog",
+        "tags": [
+          "Blogs"
+        ],
+        "operationId": "AddNewBlog",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "category_id",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "content",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AddNewBlog"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "Blog Published Successfully.",
+                "data": {
+                  "category_id": "6197cd59e28a5eb64301b2c8",
+                  "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+                  "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+                  "title": "Why should you become a full stack developer?",
+                  "author_id": "6199039f2b88fabc684ab32f",
+                  "content": "Let’s get this cleared first. Here are the top 3 reasons why you should consider becoming a full stack developer -\n\n1. Building unique proprietary software products\nEvery company/developer follows their own tech stack while building a product (as every product has its own requirements and the best set of technology is chosen accordingly).\n\nThe use of such diverse technologies makes the code base of the project complex and this eventually creates a unique code for a particular product. Companies adopting full stack development will have this edge.",
+                  "status": "published",
+                  "date": "2021-11-20T14:23:37.117Z",
+                  "_id": "619904e92b88fabc684ab332",
+                  "createdAt": "2021-11-20T14:23:37.130Z",
+                  "updatedAt": "2021-11-20T14:23:37.130Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1073"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"431-cPa7rDWEo/l4+lvY3tKNLEiY9HQ\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:23:37 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/update-blog": {
+      "put": {
+        "summary": "Update Blog",
+        "tags": [
+          "Blogs"
+        ],
+        "operationId": "UpdateBlog",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "image_alt",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "content",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/UpdateBlog-UnAuthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 0,
+                "message": "You are not Authorized!",
+                "data": null
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "60"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3c-SOUeNEqcTolR0CzbGH0NayJlX38\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:25:50 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UpdateBlog-Authorized"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "Blog Updated Successfully.",
+                "data": {
+                  "_id": "6197cf099d6a0fa882cb0e75",
+                  "category_id": "6197cd59e28a5eb64301b2c8",
+                  "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+                  "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+                  "title": "Why should you become a full stack developer?",
+                  "author_id": "61977e099fe7b649dae5e0c0",
+                  "content": "This diverse working knowledge gives developers the flexibility to tailor the tools needed for the project as per the project needs and create a state of the art products; since every technology has something different to offer - broadly in terms of syntaxes, compiling time (performance), compatibility, code reusability.\n\nOne fine example is that web developers with front-end knowledge can easily convert animations and graphics offered by software like Adobe Photoshop directly to front-end code. Thereby reducing the dependency on such third-party proprietary software. Limiting knowledge of basic styling tools will bind the developer to use such third-party software and thus burdening the project’s budget. Similar advantages apply to back-end scenarios. And thus knowing several essential tools will open up innovative approaches to projects.",
+                  "status": "published",
+                  "date": "2021-11-19T16:21:29.073Z",
+                  "createdAt": "2021-11-19T16:21:29.109Z",
+                  "updatedAt": "2021-11-20T14:26:12.847Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1367"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"557-k8bmVT2CROGIMe/xzHXIekQoAR0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:26:12 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/delete-blog": {
+      "delete": {
+        "summary": "Delete Blog",
+        "tags": [
+          "Blogs"
+        ],
+        "operationId": "DeleteBlog",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/DeleteBlog-NotFound"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 0,
+                "message": "Blog Not Found!",
+                "data": null
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "52"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"34-QLcH6v3QA+qtxwzXD+CLLEkhyJ8\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:27:05 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/DeleteBlog-NotAuthorized1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 0,
+                "message": "You are not Authorized!",
+                "data": null
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "60"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3c-SOUeNEqcTolR0CzbGH0NayJlX38\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:27:29 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DeleteBlog-Success"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "Blog Deleted Successfully.",
+                "data": {
+                  "_id": "619904e92b88fabc684ab332",
+                  "category_id": "6197cd59e28a5eb64301b2c8",
+                  "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+                  "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+                  "title": "Why should you become a full stack developer?",
+                  "author_id": "6199039f2b88fabc684ab32f",
+                  "content": "Let’s get this cleared first. Here are the top 3 reasons why you should consider becoming a full stack developer -\n\n1. Building unique proprietary software products\nEvery company/developer follows their own tech stack while building a product (as every product has its own requirements and the best set of technology is chosen accordingly).\n\nThe use of such diverse technologies makes the code base of the project complex and this eventually creates a unique code for a particular product. Companies adopting full stack development will have this edge.",
+                  "status": "published",
+                  "date": "2021-11-20T14:23:37.117Z",
+                  "createdAt": "2021-11-20T14:23:37.130Z",
+                  "updatedAt": "2021-11-20T14:23:37.130Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1071"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"42f-4BeYJoTXWBq76rrtKz23sNvVdUM\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:28:11 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/my-blogs": {
+      "get": {
+        "summary": "Get My Blogs",
+        "tags": [
+          "Blogs"
+        ],
+        "operationId": "GetMyBlogs",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetMyBlogs-NoBlogs"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "No Blogs Found.",
+                "data": []
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "50"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"32-Z0MB5WO96c+0VHKUAeeiLrhdZJY\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:28:33 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/GetMyBlogs-Token1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 0,
+                "message": "Please Provide Token.",
+                "data": null
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "58"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3a-Uq45vP/U2banNRJohJgw6i7STk0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:29:41 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blogs": {
+      "get": {
+        "summary": "Get All Blogs",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetAllBlogs",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "cat",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetAllBlogs-SuccessCategoryWise"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "Blogs Found Success.",
+                "data": [
+                  {
+                    "_id": "6197d41950d3cfb6e44feda5",
+                    "category_id": "6198bd633e59225d6bbef84d",
+                    "image": "https://bloggify.s3.amazonaws.com/cdfe9408-b688-4521-83f0-a1da6a41e4fd.png",
+                    "image_alt": "immune-system",
+                    "title": "Make your immune system more strong | Boost your Immunity",
+                    "author_id": "6197d24dabb407fc6a11b1aa",
+                    "content": "How does the Immune System Work?\nWhen the body senses foreign substances (called antigens), the system works to acknowledge the antigens and acquire to eliminate them.\n\nLymphocytes are triggered to make antibodies. These specialized proteins lock onto specific antigens. The antibodies stay in a person's body. That way, if the system encounters that antigen again, the antibodies are ready to do their job. That's why someone who gets sick with a disease, like chickenpox, usually won't get sick from it again.\n\nAntibodies can neutralize toxins (poisonous or damaging substances) created by totally different organisms and activate a bunch of proteins referred to as complement that is a section of the system. Complement helps kill microorganisms, viruses, or infected cells. These specialized cells and components of the system offer body protection against disease. This protection is termed as immunity.\nFever is an immune system response\n\nHumans have 3 forms of immunity — innate, adaptive, and passive.\n\nInnate immunity :\nEveryone seems to be born with innate (or natural) immunity, a kind of general protection.\n\nAdaptive immunity :\nAdaptive (or active) immunity develops throughout our lives. We tend to develop adaptive immunity once we're exposed to diseases or once we're immunized against them with vaccines.\n\nPassive immunity :\nPassive immunity is \"borrowed\" from another source and it lasts for a quick time.",
+                    "status": "published",
+                    "date": "2021-11-19T16:43:05.545Z",
+                    "createdAt": "2021-11-19T16:43:05.570Z",
+                    "updatedAt": "2021-11-20T12:12:52.209Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1940"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"794-44OrEnLryRJlWb/bppdBPj4nrjg\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:30:17 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/find-user": {
+      "get": {
+        "summary": "Search User",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "SearchUser",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SearchUser-Success"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": 1,
+                "message": "User Found Success.",
+                "data": {
+                  "email": "hkanani191@gmail.com",
+                  "usernmae": "harikanani",
+                  "full_name": "hari kanani"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "134"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"86-3vXlxw2a/t8jL1o0mK9YoG9eJo0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 20 Nov 2021 14:17:20 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/category": {
+      "post": {
+        "summary": "Add Blog Category",
+        "tags": [
+          "Admin"
+        ],
+        "operationId": "AddBlogCategory",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddBlogCategoryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserSignupRequest": {
+      "title": "UserSignupRequest",
+      "example": {
+        "full_name": "John Doe",
+        "username": "john01",
+        "email": "john01@gmail.com",
+        "password": "password"
+      },
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "full_name",
+        "username",
+        "email",
+        "password"
+      ]
+    },
+    "UserSignup": {
+      "title": "UserSignup",
+      "example": {
+        "status": 1,
+        "message": "Registration Success.",
+        "data": {
+          "full_name": "John Doe",
+          "username": "john01",
+          "email": "john01@gmail.com",
+          "password": "5f4dcc3b5aa765d61d8327deb882cf99",
+          "_id": "6199039f2b88fabc684ab32f",
+          "createdAt": "2021-11-20T14:18:07.781Z",
+          "updatedAt": "2021-11-20T14:18:07.781Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data": {
+      "title": "Data",
+      "example": {
+        "full_name": "John Doe",
+        "username": "john01",
+        "email": "john01@gmail.com",
+        "password": "5f4dcc3b5aa765d61d8327deb882cf99",
+        "_id": "6199039f2b88fabc684ab32f",
+        "createdAt": "2021-11-20T14:18:07.781Z",
+        "updatedAt": "2021-11-20T14:18:07.781Z"
+      },
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "full_name",
+        "username",
+        "email",
+        "password",
+        "_id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "UserLoginRequest": {
+      "title": "UserLoginRequest",
+      "example": {
+        "email": "john01@gmail.com",
+        "password": "password"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "UserLogin": {
+      "title": "UserLogin",
+      "example": {
+        "status": 1,
+        "message": "Login Success.",
+        "data": {
+          "username": "john01",
+          "email": "john01@gmail.com",
+          "full_name": "John Doe",
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4wMSIsImVtYWlsIjoiam9objAxQGdtYWlsLmNvbSIsInVzZXJfaWQiOiI2MTk5MDM5ZjJiODhmYWJjNjg0YWIzMmYiLCJpYXQiOjE2Mzc0MTc5MjIsImV4cCI6MTYzNzUwNDMyMn0.H3KYHoLictbjki4MauLIQsHxADIz8as7e6g8JVloNl0"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data1"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data1": {
+      "title": "Data1",
+      "example": {
+        "username": "john01",
+        "email": "john01@gmail.com",
+        "full_name": "John Doe",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4wMSIsImVtYWlsIjoiam9objAxQGdtYWlsLmNvbSIsInVzZXJfaWQiOiI2MTk5MDM5ZjJiODhmYWJjNjg0YWIzMmYiLCJpYXQiOjE2Mzc0MTc5MjIsImV4cCI6MTYzNzUwNDMyMn0.H3KYHoLictbjki4MauLIQsHxADIz8as7e6g8JVloNl0"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "email",
+        "full_name",
+        "token"
+      ]
+    },
+    "AddNewBlog": {
+      "title": "AddNewBlog",
+      "example": {
+        "status": 1,
+        "message": "Blog Published Successfully.",
+        "data": {
+          "category_id": "6197cd59e28a5eb64301b2c8",
+          "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+          "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+          "title": "Why should you become a full stack developer?",
+          "author_id": "6199039f2b88fabc684ab32f",
+          "content": "Let’s get this cleared first. Here are the top 3 reasons why you should consider becoming a full stack developer -\n\n1. Building unique proprietary software products\nEvery company/developer follows their own tech stack while building a product (as every product has its own requirements and the best set of technology is chosen accordingly).\n\nThe use of such diverse technologies makes the code base of the project complex and this eventually creates a unique code for a particular product. Companies adopting full stack development will have this edge.",
+          "status": "published",
+          "date": "2021-11-20T14:23:37.117Z",
+          "_id": "619904e92b88fabc684ab332",
+          "createdAt": "2021-11-20T14:23:37.130Z",
+          "updatedAt": "2021-11-20T14:23:37.130Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data2"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data2": {
+      "title": "Data2",
+      "example": {
+        "category_id": "6197cd59e28a5eb64301b2c8",
+        "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+        "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+        "title": "Why should you become a full stack developer?",
+        "author_id": "6199039f2b88fabc684ab32f",
+        "content": "Let’s get this cleared first. Here are the top 3 reasons why you should consider becoming a full stack developer -\n\n1. Building unique proprietary software products\nEvery company/developer follows their own tech stack while building a product (as every product has its own requirements and the best set of technology is chosen accordingly).\n\nThe use of such diverse technologies makes the code base of the project complex and this eventually creates a unique code for a particular product. Companies adopting full stack development will have this edge.",
+        "status": "published",
+        "date": "2021-11-20T14:23:37.117Z",
+        "_id": "619904e92b88fabc684ab332",
+        "createdAt": "2021-11-20T14:23:37.130Z",
+        "updatedAt": "2021-11-20T14:23:37.130Z"
+      },
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "image_alt": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "author_id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "category_id",
+        "image",
+        "image_alt",
+        "title",
+        "author_id",
+        "content",
+        "status",
+        "date",
+        "_id",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "UpdateBlog-UnAuthorized1": {
+      "title": "UpdateBlog-UnAuthorized1",
+      "example": {
+        "status": 0,
+        "message": "You are not Authorized!",
+        "data": null
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "UpdateBlog-Authorized": {
+      "title": "UpdateBlog-Authorized",
+      "example": {
+        "status": 1,
+        "message": "Blog Updated Successfully.",
+        "data": {
+          "_id": "6197cf099d6a0fa882cb0e75",
+          "category_id": "6197cd59e28a5eb64301b2c8",
+          "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+          "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+          "title": "Why should you become a full stack developer?",
+          "author_id": "61977e099fe7b649dae5e0c0",
+          "content": "This diverse working knowledge gives developers the flexibility to tailor the tools needed for the project as per the project needs and create a state of the art products; since every technology has something different to offer - broadly in terms of syntaxes, compiling time (performance), compatibility, code reusability.\n\nOne fine example is that web developers with front-end knowledge can easily convert animations and graphics offered by software like Adobe Photoshop directly to front-end code. Thereby reducing the dependency on such third-party proprietary software. Limiting knowledge of basic styling tools will bind the developer to use such third-party software and thus burdening the project’s budget. Similar advantages apply to back-end scenarios. And thus knowing several essential tools will open up innovative approaches to projects.",
+          "status": "published",
+          "date": "2021-11-19T16:21:29.073Z",
+          "createdAt": "2021-11-19T16:21:29.109Z",
+          "updatedAt": "2021-11-20T14:26:12.847Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data2"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "DeleteBlog-NotFound": {
+      "title": "DeleteBlog-NotFound",
+      "example": {
+        "status": 0,
+        "message": "Blog Not Found!",
+        "data": null
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "DeleteBlog-NotAuthorized1": {
+      "title": "DeleteBlog-NotAuthorized1",
+      "example": {
+        "status": 0,
+        "message": "You are not Authorized!",
+        "data": null
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "DeleteBlog-Success": {
+      "title": "DeleteBlog-Success",
+      "example": {
+        "status": 1,
+        "message": "Blog Deleted Successfully.",
+        "data": {
+          "_id": "619904e92b88fabc684ab332",
+          "category_id": "6197cd59e28a5eb64301b2c8",
+          "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+          "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+          "title": "Why should you become a full stack developer?",
+          "author_id": "6199039f2b88fabc684ab32f",
+          "content": "Let’s get this cleared first. Here are the top 3 reasons why you should consider becoming a full stack developer -\n\n1. Building unique proprietary software products\nEvery company/developer follows their own tech stack while building a product (as every product has its own requirements and the best set of technology is chosen accordingly).\n\nThe use of such diverse technologies makes the code base of the project complex and this eventually creates a unique code for a particular product. Companies adopting full stack development will have this edge.",
+          "status": "published",
+          "date": "2021-11-20T14:23:37.117Z",
+          "createdAt": "2021-11-20T14:23:37.130Z",
+          "updatedAt": "2021-11-20T14:23:37.130Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data2"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "GetMyBlogs-NoBlogs": {
+      "title": "GetMyBlogs-NoBlogs",
+      "example": {
+        "status": 1,
+        "message": "No Blogs Found.",
+        "data": []
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "GetMyBlogs-Success": {
+      "title": "GetMyBlogs-Success",
+      "example": {
+        "status": 1,
+        "message": "Blogs Found Succesfully.",
+        "data": [
+          {
+            "_id": "619906372b88fabc684ab33d",
+            "category_id": "6197cd59e28a5eb64301b2c8",
+            "image": "https://bloggify.s3.us-east-2.amazonaws.com/e092fc74-1cfc-4ce3-bdd6-8a7d564b5bd1.jpeg",
+            "image_alt": "e092fc74-1cfc-4ce3-bdd6-8a7d564b5bd1",
+            "title": "Why should you become a full stack developer?",
+            "author_id": "6199039f2b88fabc684ab32f",
+            "content": "Let’s get this cleared first. Here are the top 3 reasons why you should consider becoming a full stack developer -\n\n1. Building unique proprietary software products\nEvery company/developer follows their own tech stack while building a product (as every product has its own requirements and the best set of technology is chosen accordingly).\n\nThe use of such diverse technologies makes the code base of the project complex and this eventually creates a unique code for a particular product. Companies adopting full stack development will have this edge.",
+            "status": "published",
+            "date": "2021-11-20T14:29:11.676Z",
+            "createdAt": "2021-11-20T14:29:11.682Z",
+            "updatedAt": "2021-11-20T14:29:11.682Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data2"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "GetMyBlogs-Token1": {
+      "title": "GetMyBlogs-Token1",
+      "example": {
+        "status": 0,
+        "message": "Please Provide Token.",
+        "data": null
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "GetAllBlogs-SuccessCategoryWise": {
+      "title": "GetAllBlogs-SuccessCategoryWise",
+      "example": {
+        "status": 1,
+        "message": "Blogs Found Success.",
+        "data": [
+          {
+            "_id": "6197d41950d3cfb6e44feda5",
+            "category_id": "6198bd633e59225d6bbef84d",
+            "image": "https://bloggify.s3.amazonaws.com/cdfe9408-b688-4521-83f0-a1da6a41e4fd.png",
+            "image_alt": "immune-system",
+            "title": "Make your immune system more strong | Boost your Immunity",
+            "author_id": "6197d24dabb407fc6a11b1aa",
+            "content": "How does the Immune System Work?\nWhen the body senses foreign substances (called antigens), the system works to acknowledge the antigens and acquire to eliminate them.\n\nLymphocytes are triggered to make antibodies. These specialized proteins lock onto specific antigens. The antibodies stay in a person's body. That way, if the system encounters that antigen again, the antibodies are ready to do their job. That's why someone who gets sick with a disease, like chickenpox, usually won't get sick from it again.\n\nAntibodies can neutralize toxins (poisonous or damaging substances) created by totally different organisms and activate a bunch of proteins referred to as complement that is a section of the system. Complement helps kill microorganisms, viruses, or infected cells. These specialized cells and components of the system offer body protection against disease. This protection is termed as immunity.\nFever is an immune system response\n\nHumans have 3 forms of immunity — innate, adaptive, and passive.\n\nInnate immunity :\nEveryone seems to be born with innate (or natural) immunity, a kind of general protection.\n\nAdaptive immunity :\nAdaptive (or active) immunity develops throughout our lives. We tend to develop adaptive immunity once we're exposed to diseases or once we're immunized against them with vaccines.\n\nPassive immunity :\nPassive immunity is \"borrowed\" from another source and it lasts for a quick time.",
+            "status": "published",
+            "date": "2021-11-19T16:43:05.545Z",
+            "createdAt": "2021-11-19T16:43:05.570Z",
+            "updatedAt": "2021-11-20T12:12:52.209Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data2"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "GetAllBlogs-Success": {
+      "title": "GetAllBlogs-Success",
+      "example": {
+        "status": 1,
+        "message": "Blogs Found Success.",
+        "data": [
+          {
+            "_id": "6197cf099d6a0fa882cb0e75",
+            "category_id": "6197cd59e28a5eb64301b2c8",
+            "image": "https://bloggify.s3.amazonaws.com/90dee1de-9a03-493a-90b2-c37cd4079306.jpeg",
+            "image_alt": "90dee1de-9a03-493a-90b2-c37cd4079306",
+            "title": "Why should you become a full stack developer?",
+            "author_id": "61977e099fe7b649dae5e0c0",
+            "content": "This diverse working knowledge gives developers the flexibility to tailor the tools needed for the project as per the project needs and create a state of the art products; since every technology has something different to offer - broadly in terms of syntaxes, compiling time (performance), compatibility, code reusability.\n\nOne fine example is that web developers with front-end knowledge can easily convert animations and graphics offered by software like Adobe Photoshop directly to front-end code. Thereby reducing the dependency on such third-party proprietary software. Limiting knowledge of basic styling tools will bind the developer to use such third-party software and thus burdening the project’s budget. Similar advantages apply to back-end scenarios. And thus knowing several essential tools will open up innovative approaches to projects.",
+            "status": "published",
+            "date": "2021-11-19T16:21:29.073Z",
+            "createdAt": "2021-11-19T16:21:29.109Z",
+            "updatedAt": "2021-11-20T14:26:12.847Z"
+          },
+          {
+            "_id": "6197d26eabb407fc6a11b1ad",
+            "category_id": "6197cd59e28a5eb64301b2c8",
+            "image": "https://bloggify.s3.amazonaws.com/9ae819da-245b-4b47-921e-93fe0da26fe1.jpeg",
+            "image_alt": "proof",
+            "title": "Astra successfully reaches orbit for the first time with latest rocket launch",
+            "author_id": "6197d24dabb407fc6a11b1aa",
+            "content": "in a new window)\nThere’s another launch company newly able to count itself among the small (but growing) group that has reached orbit: Astra. The Alameda-based rocket startup notched that achievement late Friday night, taking off from its launch site in Kodiak, Alaska shortly after 9 PM local time (1 AM ET).\n\nThis was Astra’s ‘LV0007’ mission, the follow-up to its last try in August, which was ended short of reaching orbit after the rocket got off to a rocky start with a brief hover and sideways strafe movement just after liftoff. Astra then investigated the cause of the misfire (an early engine shutdown) before initially setting the LV0007 launch for the end of October. That was shifted due to weather.\n\nThis new launch and Astra’s first successful flight to orbit comes just under a year after the company reached space with its Rocket 3.2 test launch, during a mission which surprised everyone, including Astra’s own team, with how close it came to achieving orbit.",
+            "status": "published",
+            "date": "2021-11-19T16:35:58.856Z",
+            "createdAt": "2021-11-19T16:35:58.862Z",
+            "updatedAt": "2021-11-19T16:35:58.862Z"
+          },
+          {
+            "_id": "6197d41950d3cfb6e44feda5",
+            "category_id": "6198bd633e59225d6bbef84d",
+            "image": "https://bloggify.s3.amazonaws.com/cdfe9408-b688-4521-83f0-a1da6a41e4fd.png",
+            "image_alt": "immune-system",
+            "title": "Make your immune system more strong | Boost your Immunity",
+            "author_id": "6197d24dabb407fc6a11b1aa",
+            "content": "How does the Immune System Work?\nWhen the body senses foreign substances (called antigens), the system works to acknowledge the antigens and acquire to eliminate them.\n\nLymphocytes are triggered to make antibodies. These specialized proteins lock onto specific antigens. The antibodies stay in a person's body. That way, if the system encounters that antigen again, the antibodies are ready to do their job. That's why someone who gets sick with a disease, like chickenpox, usually won't get sick from it again.\n\nAntibodies can neutralize toxins (poisonous or damaging substances) created by totally different organisms and activate a bunch of proteins referred to as complement that is a section of the system. Complement helps kill microorganisms, viruses, or infected cells. These specialized cells and components of the system offer body protection against disease. This protection is termed as immunity.\nFever is an immune system response\n\nHumans have 3 forms of immunity — innate, adaptive, and passive.\n\nInnate immunity :\nEveryone seems to be born with innate (or natural) immunity, a kind of general protection.\n\nAdaptive immunity :\nAdaptive (or active) immunity develops throughout our lives. We tend to develop adaptive immunity once we're exposed to diseases or once we're immunized against them with vaccines.\n\nPassive immunity :\nPassive immunity is \"borrowed\" from another source and it lasts for a quick time.",
+            "status": "published",
+            "date": "2021-11-19T16:43:05.545Z",
+            "createdAt": "2021-11-19T16:43:05.570Z",
+            "updatedAt": "2021-11-20T12:12:52.209Z"
+          },
+          {
+            "_id": "619906372b88fabc684ab33d",
+            "category_id": "6197cd59e28a5eb64301b2c8",
+            "image": "https://bloggify.s3.us-east-2.amazonaws.com/e092fc74-1cfc-4ce3-bdd6-8a7d564b5bd1.jpeg",
+            "image_alt": "e092fc74-1cfc-4ce3-bdd6-8a7d564b5bd1",
+            "title": "Why should you become a full stack developer?",
+            "author_id": "6199039f2b88fabc684ab32f",
+            "content": "Let’s get this cleared first. Here are the top 3 reasons why you should consider becoming a full stack developer -\n\n1. Building unique proprietary software products\nEvery company/developer follows their own tech stack while building a product (as every product has its own requirements and the best set of technology is chosen accordingly).\n\nThe use of such diverse technologies makes the code base of the project complex and this eventually creates a unique code for a particular product. Companies adopting full stack development will have this edge.",
+            "status": "published",
+            "date": "2021-11-20T14:29:11.676Z",
+            "createdAt": "2021-11-20T14:29:11.682Z",
+            "updatedAt": "2021-11-20T14:29:11.682Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data2"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "SearchUser-Success": {
+      "title": "SearchUser-Success",
+      "example": {
+        "status": 1,
+        "message": "User Found Success.",
+        "data": {
+          "email": "hkanani191@gmail.com",
+          "usernmae": "harikanani",
+          "full_name": "hari kanani"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data8"
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "Data8": {
+      "title": "Data8",
+      "example": {
+        "email": "hkanani191@gmail.com",
+        "usernmae": "harikanani",
+        "full_name": "hari kanani"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "usernmae": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "usernmae",
+        "full_name"
+      ]
+    },
+    "SearchUser-UserNotFound": {
+      "title": "SearchUser-UserNotFound",
+      "example": {
+        "status": 1,
+        "message": "User Not Found With username/email",
+        "data": []
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ]
+    },
+    "AddBlogCategoryRequest": {
+      "title": "AddBlogCategoryRequest",
+      "example": {
+        "category_name": "Tech",
+        "category_description": "Technologies related Blogs will be added into this category."
+      },
+      "type": "object",
+      "properties": {
+        "category_name": {
+          "type": "string"
+        },
+        "category_description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "category_name",
+        "category_description"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Blogs"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Admin"
+    }
+  ]
+}
